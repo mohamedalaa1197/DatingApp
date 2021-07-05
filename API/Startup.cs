@@ -39,6 +39,7 @@ namespace API
             //Extension methods (user defined)
             services.applicationServices(_config);
             services.IdentityService(_config);
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

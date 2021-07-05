@@ -22,6 +22,9 @@ namespace API.Controllers
         }
 
         [HttpPost("register")]
+
+        // To receive data from the body it should be an object
+         
         public async Task<ActionResult<UserDTO>> Register(RegisterDTO registerDTO){
 
             if(await UserExist(registerDTO.userName)) return BadRequest("Name is Taken");
@@ -30,7 +33,7 @@ namespace API.Controllers
 
             var user =new appUser(){
                 userName=registerDTO.userName.ToLower(),
-                passwordHash=hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.password)),
+                passwordHash=hmac.ComputeHash(Encoding.UTF32.GetBytes(registerDTO.password)),
                 passwordSalt=hmac.Key
             };
 
@@ -55,7 +58,7 @@ namespace API.Controllers
 
             using var hmc =new HMACSHA512(user.passwordSalt);
 
-            var ComputedHash=hmc.ComputeHash(Encoding.UTF8.GetBytes(loginDTO.password));
+            var ComputedHash=hmc.ComputeHash(Encoding.UTF32.GetBytes(loginDTO.password));
 
             for (int i = 0; i <ComputedHash.Length; i++)
             {
