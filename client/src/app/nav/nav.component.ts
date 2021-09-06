@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { User } from 'src/_models/User';
 import { AccountService } from 'src/_Services/account.service';
@@ -17,23 +19,29 @@ export class NavComponent implements OnInit {
   // }
   
   model:any={};
-  constructor(public account:AccountService) { }
+  constructor(public account:AccountService ,
+              private router : Router,
+              private toastr : ToastrService) { }
 
   ngOnInit(): void {
 
   }
   
-  login(){
+  login()
+  {
     this.account.login(this.model)
         .subscribe(response=>{
           console.log(this.model);
+          this.router.navigateByUrl("/members");
         },error=>{
           console.log("There is an Error");
+          this.toastr.error(error.error);
         });
   }
 
   logout(){
     this.account.logout();
+    this.router.navigateByUrl("/");
   }
   
   ///used to subscribe but now we subscribe using async Pipe
