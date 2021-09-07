@@ -33,9 +33,6 @@ export class NavComponent implements OnInit {
         .subscribe(response=>{
           console.log(this.model);
           this.router.navigateByUrl("/members");
-        },error=>{
-          console.log("There is an Error");
-          this.toastr.error(error.error);
         });
   }
 
