@@ -24,7 +24,6 @@ namespace API.Controllers
         [HttpPost("register")]
 
         // To receive data from the body it should be an object
-         
         public async Task<ActionResult<UserDTO>> Register(RegisterDTO registerDTO){
 
             if(await UserExist(registerDTO.userName)) return BadRequest("Name is Taken");
