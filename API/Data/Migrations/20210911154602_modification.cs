@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace API.Data.Migrations
 {
-    public partial class ExtendUserEntity : Migration
+    public partial class modification : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,13 +14,13 @@ namespace API.Data.Migrations
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "Coutry",
+                name: "Country",
                 table: "Users",
                 type: "TEXT",
                 nullable: true);
 
             migrationBuilder.AddColumn<DateTime>(
-                name: "Creadted",
+                name: "Created",
                 table: "Users",
                 type: "TEXT",
                 nullable: false,
@@ -40,7 +40,7 @@ namespace API.Data.Migrations
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "Interestes",
+                name: "Interests",
                 table: "Users",
                 type: "TEXT",
                 nullable: true);
@@ -68,6 +68,18 @@ namespace API.Data.Migrations
                 name: "LookingFor",
                 table: "Users",
                 type: "TEXT",
+                nullable: true);
+
+            migrationBuilder.AddColumn<byte[]>(
+                name: "passwordHash",
+                table: "Users",
+                type: "BLOB",
+                nullable: true);
+
+            migrationBuilder.AddColumn<byte[]>(
+                name: "passwordSalt",
+                table: "Users",
+                type: "BLOB",
                 nullable: true);
 
             migrationBuilder.CreateTable(
@@ -108,11 +120,11 @@ namespace API.Data.Migrations
                 table: "Users");
 
             migrationBuilder.DropColumn(
-                name: "Coutry",
+                name: "Country",
                 table: "Users");
 
             migrationBuilder.DropColumn(
-                name: "Creadted",
+                name: "Created",
                 table: "Users");
 
             migrationBuilder.DropColumn(
@@ -124,7 +136,7 @@ namespace API.Data.Migrations
                 table: "Users");
 
             migrationBuilder.DropColumn(
-                name: "Interestes",
+                name: "Interests",
                 table: "Users");
 
             migrationBuilder.DropColumn(
@@ -141,6 +153,14 @@ namespace API.Data.Migrations
 
             migrationBuilder.DropColumn(
                 name: "LookingFor",
+                table: "Users");
+
+            migrationBuilder.DropColumn(
+                name: "passwordHash",
+                table: "Users");
+
+            migrationBuilder.DropColumn(
+                name: "passwordSalt",
                 table: "Users");
         }
     }

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import {map} from 'rxjs/operators'
+import { environment } from 'src/environments/environment';
 import { User } from 'src/_models/User';
 
 
@@ -11,7 +12,7 @@ import { User } from 'src/_models/User';
 })
 export class AccountService {
 
-    baseUrl="https://localhost:5001/api/";
+    baseUrl = environment.apiURL;
 
     //ReplaySubject ==>it is kind of obeservables where we can store values in 
     // 1==> means we store only 1 Value.

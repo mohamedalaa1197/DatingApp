@@ -35,7 +35,7 @@ namespace API.Controllers
 
 
         // api/users/3
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<MemberDTO>> GetUserById(int id)
         {
             return await _userRepository.GetUserAsyncById(id);
