@@ -21,6 +21,9 @@ import { NotfoundComponent } from './Errors/notfound/notfound.component';
 import { ServererrorComponent } from './Errors/servererror/servererror.component';
 import { MembercardComponent } from './members/membercard/membercard.component';
 import { HeaderInterceptorInterceptor } from './_interseptors/header-interceptor.interceptor';
+import { EditmemberComponent } from './members/editmember/editmember.component';
+import { LoadingInterceptor } from './_interseptors/loading.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
@@ -36,7 +39,8 @@ import { HeaderInterceptorInterceptor } from './_interseptors/header-interceptor
     TestErrorsComponent,
     NotfoundComponent,
     ServererrorComponent,
-    MembercardComponent
+    MembercardComponent,
+    EditmemberComponent
   ],
   imports: [
     BrowserModule,
@@ -44,11 +48,14 @@ import { HeaderInterceptorInterceptor } from './_interseptors/header-interceptor
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    NgxSpinnerModule
   ],
   providers: [
     {provide : HTTP_INTERCEPTORS ,useClass : ErrorInterceptor , multi : true},
-    {provide :HTTP_INTERCEPTORS , useClass : HeaderInterceptorInterceptor , multi : true}
+    {provide :HTTP_INTERCEPTORS , useClass : HeaderInterceptorInterceptor , multi : true},
+    {provide :HTTP_INTERCEPTORS , useClass : LoadingInterceptor , multi : true}
+
   ],
   bootstrap: [AppComponent]
 })

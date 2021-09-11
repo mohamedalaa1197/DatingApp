@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/_guard/auth.guard';
+import { PreventchangesGuard } from 'src/_guard/preventchanges.guard';
 import { NotfoundComponent } from './Errors/notfound/notfound.component';
 import { ServererrorComponent } from './Errors/servererror/servererror.component';
 import { TestErrorsComponent } from './Errors/test-errors/test-errors.component';
 import { HomeComponent } from './home/home.component';
 import { ListsComponent } from './lists/lists.component';
+import { EditmemberComponent } from './members/editmember/editmember.component';
 import { MemberDetailsComponent } from './members/member-details/member-details.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -20,6 +22,7 @@ const routes: Routes = [
   [
     {path : 'members' , component : MemberListComponent},
     {path : 'members/:userName' , component : MemberDetailsComponent },
+    {path : 'member/edit' , component : EditmemberComponent , canDeactivate : [PreventchangesGuard] },
     {path : 'lists' , component : ListsComponent},
     {path : 'messages' , component : MessagesComponent}
     ]

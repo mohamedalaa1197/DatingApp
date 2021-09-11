@@ -30,11 +30,11 @@ namespace API.Data
                
         }
 
-        public async Task<MemberDTO> GetUserAsyncByName(string userName)
+        public async Task<appUser> GetUserAsyncByName(string userName)
         {
                     return  await _context.Users
                     .Where(u => u.userName == userName)
-                    .ProjectTo<MemberDTO>(_mapper.ConfigurationProvider)
+                    .ProjectTo<appUser>(_mapper.ConfigurationProvider)
                     .SingleOrDefaultAsync();
 
         }
@@ -51,7 +51,7 @@ namespace API.Data
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public void Update(MemberDTO User)
+        public void Update(appUser User)
         {
             _context.Entry(User).State = EntityState.Modified;
         }
